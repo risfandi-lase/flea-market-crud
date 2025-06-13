@@ -10,13 +10,19 @@ function HomePage() {
   const [isShowingModal, setIsShowingModal] = useState(false);
   const [isShowingEditModal, setIsShowingEditModal] = useState(false);
   const [editProduct, setEditProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   const fetchData = async () => {
+    setIsLoading(true)
     try {
       const response = await axios.get("http://localhost:3000/api/products");
+      console.log(response)
       setTableData(response.data);
+      
     } catch (err) {
       console.error(err.message);
+    } finally {
+        setIsLoading(false)
     }
   };
 
@@ -74,7 +80,7 @@ function HomePage() {
         </button>
       </div>
 
-      {tableData.length === 0 && (
+      {tableData.length === 0 && !isLoading && (
         <div className="flex flex-col justify-center items-center h-96 space-y-4">
           <div className="bg-base-100 rounded-full p-6">
             <PackageIcon className="size-12" />
@@ -88,7 +94,12 @@ function HomePage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {isLoading ? (    
+         <div className="flex justify-center items-center h-96">
+        <span className="loading loading-spinner loading-md"></span>
+        </div>
+) : ( <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tableData.map((product) => (
           <div
             key={product.id}
@@ -131,7 +142,8 @@ function HomePage() {
             </div>
           </div>
         ))}
-      </div>
+      </div> )}
+      
     </main>
   );
 }

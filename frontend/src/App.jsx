@@ -10,16 +10,18 @@ function App() {
   const [theme, setTheme] = useState("dracula");
 
   return (
-    <div
-      data-theme={theme}
-      className="min-h-screen  bg-base-200 transition-colors duration-300"
-    >
-      <Toaster />
+    <>
+      <div
+        data-theme={theme}
+        className="min-h-screen  bg-base-200 transition-colors duration-300"
+      >
+        <Toaster />
 
-      <NavBar theme={theme} setTheme={setTheme} />
-      <HomePage />
+        <NavBar theme={theme} setTheme={setTheme} />
+        <HomePage />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
