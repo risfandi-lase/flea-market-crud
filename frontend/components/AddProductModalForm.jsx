@@ -29,7 +29,7 @@ export default function AddProductModal({ onClose, fetchTableData }) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/products",
+        "https://flea-market-crud.onrender.com/api/products",
         newProductData
       );
       console.log("Product added:", response.data);

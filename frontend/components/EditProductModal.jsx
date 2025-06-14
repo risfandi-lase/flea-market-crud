@@ -14,7 +14,7 @@ function EditProductModal({ onClose, product, fetchTableData }) {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.put(`http://localhost:3000/api/products/${product.id}`, {
+      await axios.put(`https://flea-market-crud.onrender.com/api/products/${product.id}`, {
         title,
         condition,
         price,

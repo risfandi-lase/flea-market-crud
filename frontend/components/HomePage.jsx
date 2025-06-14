@@ -15,7 +15,7 @@ function HomePage() {
   const fetchData = async () => {
     setIsLoading(true)
     try {
-      const response = await axios.get("http://localhost:3000/api/products");
+      const response = await axios.get("https://flea-market-crud.onrender.com/api/products");
       console.log(response)
       setTableData(response.data);
       
@@ -44,7 +44,7 @@ function HomePage() {
       return;
 
     try {
-      await axios.delete(`http://localhost:3000/api/products/${productId}`);
+      await axios.delete(`https://flea-market-crud.onrender.com/api/products/${productId}`);
       fetchData();
       toast.error("Your item has been removed");
     } catch (err) {
